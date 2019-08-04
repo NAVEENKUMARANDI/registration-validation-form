@@ -1,0 +1,29 @@
+<form [formGroup]="validationProfile" (ngSubmit)="onSubmit()">
+
+    <label for="firstName"> First Name :</label>
+    <input type="text" id="firstName" formControlName="firstName" />
+
+
+    <br><br>
+    <label for="email">Email :</label>
+    <input type="text" id="txtEmail" formControlName="txtEmail"/>
+
+    <div *ngIf="validationProfile.invalid" class="alert alert-danger">
+        <div *ngIf="firstName.errors?.minlength">
+            Name is required.
+        </div>
+
+        <div *ngIf="firstName.errors?.maxlength">
+            Length of Name is more than 8 chars.
+        </div>
+        <div *ngIf="firstName.errors?.minlength">
+            Length of Name is lesser than 4 chars.
+        </div>
+
+        <span style="color:Red" ng-show="validationProfile.txtEmail.$error.required"> Required! </span>
+
+        <span style="color:Red" ng-show="txtEmail.errors?.email">Please Enter Valid
+            Email</span>
+
+    </div>
+</form>
